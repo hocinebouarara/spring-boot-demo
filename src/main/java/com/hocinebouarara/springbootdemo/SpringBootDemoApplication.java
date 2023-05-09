@@ -22,7 +22,11 @@ public class SpringBootDemoApplication {
         GreetResponse response = new GreetResponse(
                 "Hello world!",
                 List.of("Java","C++","Python"),
-                new Person("Hocine Bouarara")
+                new Person(
+                        "Hocine Bouarara",
+                        27,
+                        7000
+                )
         );
 
         return response;
@@ -34,7 +38,11 @@ public class SpringBootDemoApplication {
             Person person
     ){}
 
-    record Person(String name){
+    record Person(
+            String name,
+            int age,
+            float salary
+    ){
 
     }
 
