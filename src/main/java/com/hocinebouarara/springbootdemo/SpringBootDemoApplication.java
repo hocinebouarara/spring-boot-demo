@@ -2,9 +2,7 @@ package com.hocinebouarara.springbootdemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +36,13 @@ public class SpringBootDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootDemoApplication.class, args);
+    }
+
+    //@RequestMapping(path = "api/v1/customer",method = RequestMethod.GET)
+    // that is the same thing as
+    @GetMapping("api/v1/customer")
+    public List<Customer> getCustomers(){
+        return customers;
     }
 
     public static class Customer{
