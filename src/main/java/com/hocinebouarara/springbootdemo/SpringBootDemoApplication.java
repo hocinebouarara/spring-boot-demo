@@ -25,7 +25,7 @@ public class SpringBootDemoApplication {
         );
         customers.add(hocine);
         Customer walid = new Customer(
-                1,
+                2,
                 "walid",
                 "walid@gmail.com",
                 26
@@ -40,9 +40,19 @@ public class SpringBootDemoApplication {
 
     //@RequestMapping(path = "api/v1/customer",method = RequestMethod.GET)
     // that is the same thing as
-    @GetMapping("api/v1/customer")
+    @GetMapping("api/v1/customers")
     public List<Customer> getCustomers(){
         return customers;
+    }
+
+    @GetMapping("api/v1/customers/{customerId}")
+    public Customer getCustomer(
+            @PathVariable("customerId") Integer customerId){
+        Customer customer = customers.stream().filter(
+                        c -> c.id.equals(customerId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("customer [%s] not found".formatted(customerId)));
+        return customer;
     }
 
     public static class Customer{
