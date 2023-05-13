@@ -1,5 +1,6 @@
 package com.hocinebouarara.springbootdemo.customer;
 
+import com.hocinebouarara.springbootdemo.exception.ResourceNotFount;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class CustomerService {
     }
     public Customer getCustomer(Integer id) {
         return customerDao.selectCustomerById(id)
-                .orElseThrow(()->new IllegalArgumentException(
+                .orElseThrow(()->new ResourceNotFount(
                         "Customer with id %s not found".formatted(id)));
     }
 }
