@@ -47,4 +47,12 @@ public class CustomerListDataAccessService implements CustomerDao{
     public void insertCustomer(Customer customer) {
         customers.add(customer);
     }
+
+    @Override
+    public boolean existPersonWithEmail(String email) {
+        return customers.stream()
+                .anyMatch(c -> c.getEmail().equals(email));
+    }
+
+
 }
