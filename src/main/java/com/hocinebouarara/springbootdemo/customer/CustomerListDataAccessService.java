@@ -71,5 +71,10 @@ public class CustomerListDataAccessService implements CustomerDao{
 
     }
 
+    @Override
+    public void updateCustomer(Customer customer) {
+        customers.add(customer);
+    }
+
 
 }
