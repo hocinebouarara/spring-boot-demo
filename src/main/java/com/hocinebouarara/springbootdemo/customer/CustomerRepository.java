@@ -7,4 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public interface CustomerRepository extends JpaRepository<Customer,Integer> {
 
     boolean existsCustomerByEmail(String email);
+
+    boolean existsCustomerById(Integer id);
 }
