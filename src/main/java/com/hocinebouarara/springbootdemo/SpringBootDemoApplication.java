@@ -1,5 +1,7 @@
 package com.hocinebouarara.springbootdemo;
 
+import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
 import com.hocinebouarara.springbootdemo.customer.Customer;
 import com.hocinebouarara.springbootdemo.customer.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @SpringBootApplication
 public class SpringBootDemoApplication {
@@ -21,21 +24,21 @@ public class SpringBootDemoApplication {
     CommandLineRunner runner(CustomerRepository customerRepository){
         return args -> {
 
-            Customer hocine = new Customer(
-                    1,
-                    "hocine",
-                    "hocine@gmail.com",
-                    27
-            );
-            Customer walid = new Customer(
-                    2,
-                    "walid",
-                    "walid@gmail.com",
-                    26
-            );
+            var faker = new Faker();
+            Random random = new Random();
+            Name name = faker.name();
 
-            List<Customer> customers= List.of(hocine,walid);
-            customerRepository.saveAll(customers);
+            String firstName = name.firstName();
+            String lastName = name.lastName();
+
+
+            Customer customer = new Customer(
+                    firstName +" "+lastName,
+                    firstName.toLowerCase()+"."+lastName.toLowerCase()+"@gmail.com",
+                    random.nextInt(17,90)
+                );
+
+            customerRepository.save(customer);
 
         };
     }
